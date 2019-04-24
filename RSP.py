@@ -1,9 +1,6 @@
 #Rock Paper Scissors by Blake Collins
 # Udacity's Inrto to Programming
-
-
 import random
-
 
 moves = ['rock', 'paper', 'scissors']
 
@@ -22,13 +19,10 @@ class Player():
 
         pass
 
-
-
 class RandomPlayer(Player):
     def move(self):
         throw = random.choice(moves)
         return (throw)
-
 
 
 class ReflectPlayer(Player):
@@ -36,19 +30,18 @@ class ReflectPlayer(Player):
     def __init__(self):
 
         Player.__init__(self)
-        self.learn_move = None
+        self.learn_move = moves[0]
 
     def move(self):
         if self.learn_move is None:
-            throw = moves[0]
+            throw = moves[0]                      
         else:
-            throw = self.learn_move
-            return (throw)
+            throw = self.learn_move               
+            return (throw)                        
 
     def learn(self, learn_move):
 
         self.learn_move = learn_move
-
 
 
 class Cycles(Player):
@@ -59,7 +52,7 @@ class Cycles(Player):
         self.step = 0
 
     def move(self):
-        throw = None
+        throw = moves[0]
         if self.step == 0:
             throw = moves[0]
             self.step = self.step + 1
@@ -71,8 +64,6 @@ class Cycles(Player):
             self.step = self.step + 1
         return throw
 
-
-
 class HumanPlayer(Player):
 
     def move(self):
@@ -83,7 +74,6 @@ class HumanPlayer(Player):
             print('Sorry try again')
             throw = input('rock, paper, scissors? >')
         return (throw)
-
 
 class Game():
 
@@ -106,7 +96,6 @@ class Game():
         print('The final score ' + str(self.p1.score) + ' TO ' +
               str(self.p2.score))
 
-
     def play_single(self):
         print("Rock Paper Scissors, Go!")
         print (f"Round 1 of 1:")
@@ -120,14 +109,12 @@ class Game():
         print('The final score ' + str(self.p1.score) + ' TO ' +
               str(self.p2.score))
 
-
     def play_round(self):
         move1 = self.p1.move()
         move2 = self.p2.move()
         result = Game.play(move1, move2)
         self.p1.learn(move2)
         self.p2.learn(move1)
-
 
     def play(self, move1, move2):
             print(f"You played {move1}")
@@ -147,14 +134,10 @@ class Game():
                 print(f"Score: Player 1: {move1}  Player 2: {move2}\n\n")
                 return 0
 
-
-
 def beats(one, two):
     return ((one == 'rock' and two == 'scissors') or
             (one == 'scissors' and two == 'paper') or
             (one == 'paper' and two == 'rock'))
-
-
 
 if __name__ == '__main__':
     answer = [Player(), RandomPlayer(), Cycles(), ReflectPlayer()]
@@ -162,11 +145,9 @@ if __name__ == '__main__':
  key and enter for random game: [1]Rock, [2]Random,\
 [3]Reflective, or [4]Cycles: >')
 
-
     while p2 != 1 or p2 != 2 or p2 != 3 or p2 != 4:
         p2 = random.choice(answer)
         break
-
 
     if p2 == '1':
         p2 = Player()
@@ -176,7 +157,6 @@ if __name__ == '__main__':
         p2 = Cycles()
     elif p2 == '4':
         p2 = ReflectPlayer()
-
 
     rounds = input('Enter for [s]ingle game or [f]ull game: >')
     Game = Game(p2)
