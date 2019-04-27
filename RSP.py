@@ -1,6 +1,8 @@
 #Rock Paper Scissors by Blake Collins
 # Udacity's Inrto to Programming
+
 import random
+
 
 moves = ['rock', 'paper', 'scissors']
 
@@ -26,7 +28,7 @@ class RandomPlayer(Player):
 
 class HumanPlayer(Player):
     def move(self):
-        show = input("Select your move: Rock, Paper, or Scissors ?")
+        show = input("Select your move: Rock, Paper, or Scissors? ")
         while show != 'rock' and show != 'paper' and show != 'scissors':
             print("Wrong input. Please select your move")
             show = input("rock, paper, scissors?")
@@ -74,14 +76,14 @@ class Game():
 
     def play_game(self):
         print("Game start!")
-        number_rounds = int(input("Enter the number of round?"))
+        number_rounds = int(input("How many rounds would you like to play? "))
         for round in range(number_rounds):
             print(f"Round {round}:")
             self.play_round()
         if self.p1_score > self.p2_score:
-            print("Player One Wins the Game!")
+            print("Player One Wins!")
         elif self.p1_score < self.p2_score:
-            print("Player Two Wins the Game!")
+            print("Player Two Wins!")
         else:
             print("It's a Tie Game!")
             print("The final score is " + str(self.p1_score) +
@@ -94,11 +96,11 @@ if __name__ == '__main__':
         "3": CyclePlayer(),
         "4": ReflectPlayer()
     }
-    user_input = input("Please select the type of player"
-                       "you would like to play against; "
-                       "1-Rock Player "
-                       "2-Random Player "
-                       "3-Cycle Player "
-                       "4-Reflect Player")
+    user_input = input("Please select the type of player "
+                       "you would like to play against: "
+                       "1-Rock Player, "
+                       "2-Random Player, "
+                       "3-Cycle Player, or  "
+                       "4-Reflect Player: ")
     game = Game(HumanPlayer(), strategies[user_input])
     game.play_game()
